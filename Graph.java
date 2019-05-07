@@ -27,16 +27,77 @@ public class Graph
     }
     
     //Add a node and create an empty list for it to hold adjacent nodes in the future
-    public void addEdges(Node source, Node mapped, GameArena arena) 
+    public void addEdges(Node source, Node mapped, GameArena arena, boolean directed, String side) 
     { 
-        List<Node> l = adjNodes.get(source);
-        l.add(mapped);
+        if (directed == true && source == mapped) {
+            if (side.equals("right")) {
 
-        List<Node> l2 = adjNodes.get(mapped);
-        l2.add(source);
+                List<Node> l = adjNodes.get(source);
+                l.add(mapped);
 
-        Line line = new Line(source.ball.getXPosition(), source.ball.getYPosition(), mapped.ball.getXPosition(), mapped.ball.getYPosition(), 5, "WHITE");
-        arena.addLine(line);
+                Ball b1 = new Ball(source.ball.getXPosition()+30, source.ball.getYPosition(), 30, "WHITE");
+                Ball ring = new Ball(source.ball.getXPosition()+30, source.ball.getYPosition(), 26, "BLACK");
+
+                arena.addBall(b1);
+                arena.addBall(ring);
+            }
+
+            else if (side.equals("left")) {
+
+                List<Node> l = adjNodes.get(source);
+                l.add(mapped);
+
+                Ball b1 = new Ball(source.ball.getXPosition()-30, source.ball.getYPosition(), 30, "WHITE");
+                Ball ring = new Ball(source.ball.getXPosition()-30, source.ball.getYPosition(), 26, "BLACK");
+
+                arena.addBall(b1);
+                arena.addBall(ring);
+            }
+
+            else if (side.equals("up")) {
+
+                List<Node> l = adjNodes.get(source);
+                l.add(mapped);
+
+                Ball b1 = new Ball(source.ball.getXPosition(), source.ball.getYPosition() +30, 30, "WHITE");
+                Ball ring = new Ball(source.ball.getXPosition(), source.ball.getYPosition()+30, 26, "BLACK");
+
+                arena.addBall(b1);
+                arena.addBall(ring);
+            }
+
+            else if (side.equals("down")) {
+
+                List<Node> l = adjNodes.get(source);
+                l.add(mapped);
+
+                Ball b1 = new Ball(source.ball.getXPosition(), source.ball.getYPosition()-30, 30, "WHITE");
+                Ball ring = new Ball(source.ball.getXPosition(), source.ball.getYPosition()-30, 26, "BLACK");
+
+                arena.addBall(b1);
+                arena.addBall(ring);
+            }
+        }
+
+        else if (directed == true && source != mapped) {
+            List<Node> l = adjNodes.get(source);
+            l.add(mapped);
+
+            Arrow arrow = new Arrow(source.ball.getXPosition(), source.ball.getYPosition(), mapped.ball.getXPosition(),  mapped.ball.getYPosition(), 4, "WHITE", arena);
+            arrow.setArrowHeadPosition(87.0);
+        }
+            
+        else {
+
+            List<Node> l = adjNodes.get(source);
+            l.add(mapped);
+
+            List<Node> l2 = adjNodes.get(mapped);
+            l2.add(source);
+
+            Line line = new Line(source.ball.getXPosition(), source.ball.getYPosition(), mapped.ball.getXPosition(), mapped.ball.getYPosition(), 4, "WHITE");
+            arena.addLine(line);
+        }
     }
 
     public void addNodes(GameArena arena) {
