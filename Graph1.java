@@ -18,10 +18,10 @@ public class Graph1 extends Graph {
         List<Node> l3 = g.initNodes(n3);
         List<Node> l4 = g.initNodes(n4);
         
-        g.addEdges(n1, n2, arena);
-        g.addEdges(n1, n3, arena);
-        g.addEdges(n2, n4, arena);
-        g.addEdges(n3, n4, arena);
+        g.addEdges(n1, n2, arena, false, "null");
+        g.addEdges(n1, n3, arena, false, "null");
+        g.addEdges(n2, n4, arena, false, "null");
+        g.addEdges(n3, n4, arena, false, "null");
 
         g.addNodes(arena);
 
