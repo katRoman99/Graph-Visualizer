@@ -20,19 +20,19 @@ public class Graph2 extends Graph {
         List<Node> l4 = g.initNodes(n4);
         List<Node> l5 = g.initNodes(n5);
 
-        g.addEdges(n1, n2, arena);
-        g.addEdges(n1, n3, arena);
-        g.addEdges(n1, n4, arena);
-        g.addEdges(n1, n5, arena);
+        g.addEdges(n1, n2, arena, false, "null");
+        g.addEdges(n1, n3, arena, false, "null");
+        g.addEdges(n1, n4, arena, false, "null");
+        g.addEdges(n1, n5, arena, false, "null");
 
-        g.addEdges(n2, n3, arena);
-        g.addEdges(n2, n4, arena);
-        g.addEdges(n2, n5, arena);
+        g.addEdges(n2, n3, arena, false, "null");
+        g.addEdges(n2, n4, arena, false, "null");
+        g.addEdges(n2, n5, arena, false, "null");
         
-        g.addEdges(n3, n4, arena);
-        g.addEdges(n3, n5, arena);
+        g.addEdges(n3, n4, arena, false, "null");
+        g.addEdges(n3, n5, arena, false, "null");
 
-        g.addEdges(n4, n5, arena);
+        g.addEdges(n4, n5, arena, false, "null");
 
         g.addNodes(arena);
 
