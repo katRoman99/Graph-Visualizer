@@ -2,7 +2,6 @@ import java.util.*;
 
 public class Graph5 extends Graph {
 
-    private GameArena arena = new GameArena(800, 800, true);
     private Line h1 = new Line(619, 526, 628 ,522, 4, "WHITE");
     private Line h2 = new Line(619, 526, 627 ,534, 4, "WHITE");
 
@@ -26,11 +25,11 @@ public class Graph5 extends Graph {
         
         g.addEdges(n1, n2, arena, true, "null", 85.0);
         g.addEdges(n1, n3, arena, true, "null", 85.0);
-        g.addEdges(n2, n4, arena, true, "null", 90.0);
+        g.addEdges(n2, n4, arena, true, "null", 97.0);
         g.addEdges(n3, n1, arena, true, "null", 85.0);
-        g.addEdges(n3, n5, arena, true, "null", 90.0);
+        g.addEdges(n3, n5, arena, true, "null", 97.0);
         g.addEdges(n5, n4, arena, true, "null", 85.0);
-        g.addEdges(n5, n2, arena, true, "null", 90.0);
+        g.addEdges(n5, n2, arena, true, "null", 97.0);
         g.addEdges(n5, n6, arena, true, "null", 85.0);
         g.addEdges(n6, n6, arena, true, "right", 100.0);
 
