@@ -9,6 +9,8 @@ public class Graph
         Ball ball;
         Text text;
         String colour;
+        Line ln;
+        Arrow arr;
 
         public Node(String label, int x, int y, String colour) {
             this.label = label;
@@ -27,7 +29,7 @@ public class Graph
     }
     
     //Add a node and create an empty list for it to hold adjacent nodes in the future
-    public void addEdges(Node source, Node mapped, GameArena arena, boolean directed, String side) 
+    public void addEdges(Node source, Node mapped, GameArena arena, boolean directed, String side, double pos) 
     { 
         if (directed == true && source == mapped) {
             if (side.equals("right")) {
@@ -48,7 +50,7 @@ public class Graph
                 l.add(mapped);
 
                 Ball b1 = new Ball(source.ball.getXPosition()-30, source.ball.getYPosition(), 30, "WHITE");
-                Ball ring = new Ball(source.ball.getXPosition()-30, source.ball.getYPosition(), 26, "BLACK");
+                Ball ring = new Ball(source.ball.getXPosition()-30, source.ball.getYPosition(), 26, "BLACK");                
 
                 arena.addBall(b1);
                 arena.addBall(ring);
@@ -62,6 +64,7 @@ public class Graph
                 Ball b1 = new Ball(source.ball.getXPosition(), source.ball.getYPosition() +30, 30, "WHITE");
                 Ball ring = new Ball(source.ball.getXPosition(), source.ball.getYPosition()+30, 26, "BLACK");
 
+                
                 arena.addBall(b1);
                 arena.addBall(ring);
             }
@@ -84,7 +87,8 @@ public class Graph
             l.add(mapped);
 
             Arrow arrow = new Arrow(source.ball.getXPosition(), source.ball.getYPosition(), mapped.ball.getXPosition(),  mapped.ball.getYPosition(), 4, "WHITE", arena);
-            arrow.setArrowHeadPosition(87.0);
+            arrow.setArrowHeadPosition(pos);
+            source.arr = arrow;
         }
             
         else {
@@ -97,6 +101,7 @@ public class Graph
 
             Line line = new Line(source.ball.getXPosition(), source.ball.getYPosition(), mapped.ball.getXPosition(), mapped.ball.getYPosition(), 4, "WHITE");
             arena.addLine(line);
+            source.ln = line;
         }
     }
 
@@ -117,5 +122,18 @@ public class Graph
                     System.out.print(" ===> " + k.label);
                 System.out.println("\n");
             }
+    }
+
+    public void removeGraph(GameArena arena) {
+
+        for (Node n : adjNodes.keySet()) {
+            for (Node k : adjNodes.get(n)) {
+
+                arena.removeBall(k.ball);
+                arena.removeText(k.text);
+                arena.removeLine(k.ln);
+                k.arr.removeArrow(arena);
+            }
+        }
     }
 }
