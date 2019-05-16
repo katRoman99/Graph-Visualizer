@@ -758,4 +758,8 @@ public class GameArena
         return false;
     }
 
+    public JFrame getFrame() {
+        return window;
+    }
+
 }
