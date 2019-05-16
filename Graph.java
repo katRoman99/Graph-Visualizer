@@ -3,7 +3,6 @@ import java.util.*;
 public class Graph  
 { 
     private static Map<Node, List<Node>> adjNodes = new HashMap<Node, List<Node>>();
-    private static List<Node> list = new LinkedList<Node>();
 
     static class Node {
         String label;
@@ -23,7 +22,7 @@ public class Graph
     }
     //Add a node and create an empty list for it to hold adjacent nodes in the future
     public List<Node> initNodes(Node source) {
-
+        List<Node> list = new LinkedList<Node>();
         adjNodes.put(source, list);
         return list;
     }
@@ -91,7 +90,7 @@ public class Graph
             source.arr = arrow;
         }
             
-        else {
+        else if (directed == false) {
 
             List<Node> l = adjNodes.get(source);
             l.add(mapped);
@@ -124,19 +123,17 @@ public class Graph
     }
 
     public void printGraph() {
-
-            for (Node n : adjNodes.keySet()) {
-                System.out.print("<" + n.label + ">");
-                for (Node k : adjNodes.get(n)) 
-                    System.out.print(" ===> " + k.label);
-                System.out.println("\n");
-            }
-            System.out.println("\n\n\n");
-    }
+        for (Node n : adjNodes.keySet()) {
+            System.out.print("<" + n.label + ">");
+            for (Node k : adjNodes.get(n)) 
+                System.out.print(" ===> " + k.label);
+            System.out.println("\n");
+        }
+        System.out.println("\n\n");
+}
 
     public void closeGraph() {
 
-        list.clear();
         adjNodes.clear();
         SelectionScreen select = new SelectionScreen();
         select.showSelectScreen();
