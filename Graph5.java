@@ -12,17 +12,17 @@ public class Graph5 extends Graph {
     private Node n5 = new Node("4", 400, 470, "29FAC4");
     private Node n6 = new Node("5", 600, 500, "29FAC4");
 
-    private Graph g = new Graph();
     private static boolean exit_pressed = false;
     private static Rectangle exit = new Rectangle(100, 650, 100, 60, "#a97777");
+    private static Rectangle black = new Rectangle(0, 0, 800, 800, "BLACK");
     private static Text exit_text = new Text("Back", 75, 655, 20, "#ccf4f1");
 
-    private List<Node> l1 = g.initNodes(n1);
-    private List<Node> l2 = g.initNodes(n2);
-    private List<Node> l3 = g.initNodes(n3);
-    private List<Node> l4 = g.initNodes(n4);
-    private List<Node> l5 = g.initNodes(n5);
-    private List<Node> l6 = g.initNodes(n6);
+    private List<Node> l1 = this.initNodes(n1);
+    private List<Node> l2 = this.initNodes(n2);
+    private List<Node> l3 = this.initNodes(n3);
+    private List<Node> l4 = this.initNodes(n4);
+    private List<Node> l5 = this.initNodes(n5);
+    private List<Node> l6 = this.initNodes(n6);
 
     public Graph5() {
     }
@@ -32,22 +32,23 @@ public class Graph5 extends Graph {
         GameArena arena_graph5 = new GameArena(800, 800);
         arena_graph5.getFrame().setDefaultCloseOperation(arena_graph5.getFrame().DISPOSE_ON_CLOSE);
 
-        g.addEdges(n1, n2, arena_graph5, true, "null", 85.0);
-        g.addEdges(n1, n3, arena_graph5, true, "null", 85.0);
-        g.addEdges(n2, n4, arena_graph5, true, "null", 91.0);
-        g.addEdges(n3, n1, arena_graph5, true, "null", 85.0);
-        g.addEdges(n3, n5, arena_graph5, true, "null", 91.0);
-        g.addEdges(n5, n4, arena_graph5, true, "null", 85.0);
-        g.addEdges(n5, n2, arena_graph5, true, "null", 91.0);
-        g.addEdges(n5, n6, arena_graph5, true, "null", 85.0);
-        g.addEdges(n6, n6, arena_graph5, true, "right", 100.0);
 
-        g.addNodes(arena_graph5);
+        this.addEdges(n1, n2, arena_graph5, true, "null", 85.0);
+        this.addEdges(n1, n3, arena_graph5, true, "null", 85.0);
+        this.addEdges(n2, n4, arena_graph5, true, "null", 91.0);
+        this.addEdges(n3, n1, arena_graph5, true, "null", 85.0);
+        this.addEdges(n3, n5, arena_graph5, true, "null", 91.0);
+        this.addEdges(n5, n4, arena_graph5, true, "null", 85.0);
+        this.addEdges(n5, n2, arena_graph5, true, "null", 91.0);
+        this.addEdges(n5, n6, arena_graph5, true, "null", 85.0);
+        this.addEdges(n6, n6, arena_graph5, true, "right", 100.0);
+
+        this.addNodes(arena_graph5);
 
         arena_graph5.addRectangle(exit);
         arena_graph5.addText(exit_text);
 
-        g.printGraph();
+        this.printGraph();
         arena_graph5.addLine(h1);
         arena_graph5.addLine(h2);
         arena_graph5.update();
