@@ -2,7 +2,8 @@ import java.util.*;
   
 public class Graph  
 { 
-    static Map<Node, List<Node>> adjNodes = new HashMap<Node, List<Node>>();
+    private static Map<Node, List<Node>> adjNodes = new HashMap<Node, List<Node>>();
+    private static List<Node> list = new LinkedList<Node>();
 
     static class Node {
         String label;
@@ -23,7 +24,6 @@ public class Graph
     //Add a node and create an empty list for it to hold adjacent nodes in the future
     public List<Node> initNodes(Node source) {
 
-        List<Node> list = new LinkedList<Node>();
         adjNodes.put(source, list);
         return list;
     }
@@ -131,9 +131,13 @@ public class Graph
                     System.out.print(" ===> " + k.label);
                 System.out.println("\n");
             }
+            System.out.println("\n\n\n");
     }
 
     public void closeGraph() {
+
+        list.clear();
+        adjNodes.clear();
         SelectionScreen select = new SelectionScreen();
         select.showSelectScreen();
     }
