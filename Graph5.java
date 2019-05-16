@@ -13,6 +13,9 @@ public class Graph5 extends Graph {
     private Node n6 = new Node("5", 600, 500, "29FAC4");
 
     private Graph g = new Graph();
+    private static boolean exit_pressed = false;
+    private static Rectangle exit = new Rectangle(100, 650, 100, 60, "#a97777");
+    private static Text exit_text = new Text("Back", 75, 655, 20, "#ccf4f1");
 
     private List<Node> l1 = g.initNodes(n1);
     private List<Node> l2 = g.initNodes(n2);
@@ -21,23 +24,42 @@ public class Graph5 extends Graph {
     private List<Node> l5 = g.initNodes(n5);
     private List<Node> l6 = g.initNodes(n6);
 
-    public Graph5(GameArena arena) {
-        
-        g.addEdges(n1, n2, arena, true, "null", 85.0);
-        g.addEdges(n1, n3, arena, true, "null", 85.0);
-        g.addEdges(n2, n4, arena, true, "null", 97.0);
-        g.addEdges(n3, n1, arena, true, "null", 85.0);
-        g.addEdges(n3, n5, arena, true, "null", 97.0);
-        g.addEdges(n5, n4, arena, true, "null", 85.0);
-        g.addEdges(n5, n2, arena, true, "null", 97.0);
-        g.addEdges(n5, n6, arena, true, "null", 85.0);
-        g.addEdges(n6, n6, arena, true, "right", 100.0);
+    public Graph5() {
+    }
 
-        g.addNodes(arena);
+    public void showGraph5() {
+
+        GameArena arena_graph5 = new GameArena(800, 800);
+        arena_graph5.getFrame().setDefaultCloseOperation(arena_graph5.getFrame().DISPOSE_ON_CLOSE);
+
+        g.addEdges(n1, n2, arena_graph5, true, "null", 85.0);
+        g.addEdges(n1, n3, arena_graph5, true, "null", 85.0);
+        g.addEdges(n2, n4, arena_graph5, true, "null", 91.0);
+        g.addEdges(n3, n1, arena_graph5, true, "null", 85.0);
+        g.addEdges(n3, n5, arena_graph5, true, "null", 91.0);
+        g.addEdges(n5, n4, arena_graph5, true, "null", 85.0);
+        g.addEdges(n5, n2, arena_graph5, true, "null", 91.0);
+        g.addEdges(n5, n6, arena_graph5, true, "null", 85.0);
+        g.addEdges(n6, n6, arena_graph5, true, "right", 100.0);
+
+        g.addNodes(arena_graph5);
+
+        arena_graph5.addRectangle(exit);
+        arena_graph5.addText(exit_text);
 
         g.printGraph();
-        arena.addLine(h1);
-        arena.addLine(h2);
-        arena.update();
+        arena_graph5.addLine(h1);
+        arena_graph5.addLine(h2);
+        arena_graph5.update();
+
+        while (exit_pressed == false) {
+            arena_graph5.update();
+
+            if (arena_graph5.leftMousePressed() && arena_graph5.objectClicked(exit)) {
+                arena_graph5.exit();
+                this.closeGraph();
+            }
+
+        }
     }
 }

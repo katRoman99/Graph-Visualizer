@@ -13,30 +13,52 @@ public class Graph4 extends Graph {
     private Node n4 = new Node("M", 550, 400, "29FAC4");
 
     private Graph g = new Graph();
+    private static boolean exit_pressed = false;
+    private static Rectangle exit = new Rectangle(100, 650, 100, 60, "#a97777");
+    private static Text exit_text = new Text("Back", 75, 655, 20, "#ccf4f1");
 
     private List<Node> l1 = g.initNodes(n1);
     private List<Node> l2 = g.initNodes(n2);
     private List<Node> l3 = g.initNodes(n3);
     private List<Node> l4 = g.initNodes(n4);
 
-    public Graph4(GameArena arena) {
+    public Graph4() {
+    }
 
-        g.addEdges(n1, n2, arena, true, "null", 87);
-        g.addEdges(n2, n3, arena, true, "null", 87);
-        g.addEdges(n2, n2, arena, true, "left", 100);
-        g.addEdges(n4, n4, arena, true, "right", 100);
-        g.addEdges(n3, n4, arena, true, "null", 87);
-        g.addEdges(n4, n1, arena, true, "null", 87);
-        g.addEdges(n1, n4, arena, true, "null", 87);
+    public void showGraph4() {
 
-        g.addNodes(arena);
+        GameArena arena_graph4 = new GameArena(800, 800);
+        arena_graph4.getFrame().setDefaultCloseOperation(arena_graph4.getFrame().DISPOSE_ON_CLOSE);
+
+        g.addEdges(n1, n2, arena_graph4, true, "null", 87);
+        g.addEdges(n2, n3, arena_graph4, true, "null", 87);
+        g.addEdges(n2, n2, arena_graph4, true, "left", 100);
+        g.addEdges(n4, n4, arena_graph4, true, "right", 100);
+        g.addEdges(n3, n4, arena_graph4, true, "null", 87);
+        g.addEdges(n4, n1, arena_graph4, true, "null", 87);
+        g.addEdges(n1, n4, arena_graph4, true, "null", 87);
+
+        g.addNodes(arena_graph4);
+
+        arena_graph4.addRectangle(exit);
+        arena_graph4.addText(exit_text);
 
         g.printGraph();
-        arena.addLine(h1);
-        arena.addLine(h2);
-        arena.addLine(h3);
-        arena.addLine(h4);
-        arena.update();
+        arena_graph4.addLine(h1);
+        arena_graph4.addLine(h2);
+        arena_graph4.addLine(h3);
+        arena_graph4.addLine(h4);
+        arena_graph4.update();
+
+        while (exit_pressed == false) {
+            arena_graph4.update();
+
+            if (arena_graph4.leftMousePressed() && arena_graph4.objectClicked(exit)) {
+                arena_graph4.exit();
+                this.closeGraph();
+            }
+
+        }
     }
 
 }

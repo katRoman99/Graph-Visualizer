@@ -20,7 +20,7 @@ public class Graph
 
         }
     }
-
+    //Add a node and create an empty list for it to hold adjacent nodes in the future
     public List<Node> initNodes(Node source) {
 
         List<Node> list = new LinkedList<Node>();
@@ -28,7 +28,7 @@ public class Graph
         return list;
     }
     
-    //Add a node and create an empty list for it to hold adjacent nodes in the future
+
     public void addEdges(Node source, Node mapped, GameArena arena, boolean directed, String side, double pos) 
     { 
         if (directed == true && source == mapped) {
@@ -114,6 +114,15 @@ public class Graph
         }
     }
 
+    public void removeNodes(GameArena arena) {
+
+        for (Node n: adjNodes.keySet()) {
+
+            arena.removeBall(n.ball);
+            arena.removeText(n.text);
+        }
+    }
+
     public void printGraph() {
 
             for (Node n : adjNodes.keySet()) {
@@ -124,16 +133,8 @@ public class Graph
             }
     }
 
-    public void removeGraph(GameArena arena) {
-
-        for (Node n : adjNodes.keySet()) {
-            for (Node k : adjNodes.get(n)) {
-
-                arena.removeBall(k.ball);
-                arena.removeText(k.text);
-                arena.removeLine(k.ln);
-                k.arr.removeArrow(arena);
-            }
-        }
+    public void closeGraph() {
+        SelectionScreen select = new SelectionScreen();
+        select.showSelectScreen();
     }
 }
