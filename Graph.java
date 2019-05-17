@@ -4,22 +4,6 @@ public class Graph
 { 
     private static Map<Node, List<Node>> adjNodes = new HashMap<Node, List<Node>>();
 
-    static class Node {
-        String label;
-        Ball ball;
-        Text text;
-        String colour;
-        Line ln;
-        Arrow arr;
-
-        public Node(String label, int x, int y, String colour) {
-            this.label = label;
-            this.ball = new Ball(x, y, 30, colour);
-            this.text = new Text(label, x-5, y+5, 20, "BLACK");
-
-
-        }
-    }
     //Add a node and create an empty list for it to hold adjacent nodes in the future
     public List<Node> initNodes(Node source) {
         List<Node> list = new LinkedList<Node>();
@@ -113,6 +97,20 @@ public class Graph
         }
     }
 
+    public String getConnections(Node n) {
+        List<String> node = new LinkedList<String>();
+        String s = "This is node " + n.label + ", it has connections with the following nodes:\n";
+
+        for (Node k : adjNodes.get(n))
+            node.add(k.label);
+
+        for(String b : node) {
+            String str = "["+b+"] ";
+            s = s+str; 
+        }
+        return s;
+    }
+
     public void removeNodes(GameArena arena) {
 
         for (Node n: adjNodes.keySet()) {
@@ -130,10 +128,9 @@ public class Graph
             System.out.println("\n");
         }
         System.out.println("\n\n");
-}
+    }
 
     public void closeGraph() {
-
         adjNodes.clear();
         SelectionScreen select = new SelectionScreen();
         select.showSelectScreen();
