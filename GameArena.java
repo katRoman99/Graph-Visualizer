@@ -727,12 +727,12 @@ public class GameArena
 
         this.update();
 
-        if (o instanceof Ball) {
+        if (o instanceof Node) {
 
-            Ball b = (Ball) o;
-            double s = b.getSize();
-            double x = b.getXPosition();
-            double y = b.getYPosition();
+            Node n = (Node) o;
+            double s = n.getBall().getSize();
+            double x = n.getBall().getXPosition();
+            double y = n.getBall().getYPosition();
             double mx = this.getMouseX();
             double my = this.getMouseY();
             this.update();
