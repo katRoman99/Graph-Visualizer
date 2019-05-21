@@ -723,6 +723,15 @@ public class GameArena
 		return mouseY;
 	}
 
+
+    /**
+     * A method checking whether an object was clicked depending if it was a Node
+     * instance or a Rectangle instance. Imitates a behaviour of a button.
+     * 
+     * @param o Object that we want to determine if was clicked
+     * 
+     * @return true if clicked false otherwise
+     */
     public boolean objectClicked(Object o) {
 
         this.update();
@@ -737,7 +746,7 @@ public class GameArena
             double my = this.getMouseY();
             this.update();
 
-            if (mx >= x- s/2 && mx <= x + s/2  && my >= y - s/2 && my <= y+ s/2)
+            if (mx >= x - s/2.5 && mx <= x + s/2.5  && my >= y - s/2.5 && my <= y+ s/2.5)
                 return true;
         }
 
@@ -758,6 +767,13 @@ public class GameArena
         return false;
     }
 
+
+    /**
+    * Method obtaining the JFrame of this GameArena. Used when deciding whether the application 
+    * is to be terminated or the Arena just disposed of upon closing a window.
+    * 
+    * @return window JFrame of this Arena
+    */
     public JFrame getFrame() {
         return window;
     }
